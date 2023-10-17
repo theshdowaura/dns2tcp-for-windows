@@ -14,17 +14,21 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
 
+      - name: Install MinGW
+        run: |
+          choco install mingw -y
+          refreshenv
+
       - name: Install dependencies
-        run: sudo apt-get install -y build-essential
+        run: |
+          mingw32-make -f Makefile.win32
 
       - name: Build dns2tcp
         run: |
-          git clone https://github.com/theshadowaura/dns2tcp.git
-          cd dns2tcp
-          make
+          mingw32-make -f Makefile.win32 all
 
-      - name: Upload artifacts
+      - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dns2tcp-windows
-          path: dns2tcp/dns2tcp.exe
+          path: dns2tcp.exe
