@@ -17,7 +17,6 @@ jobs:
       - name: Install MinGW
         run: |
           choco install mingw -y
-          refreshenv
 
       - name: Install dependencies
         run: |
