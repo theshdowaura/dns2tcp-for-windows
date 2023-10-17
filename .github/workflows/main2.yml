@@ -1,6 +1,7 @@
 name: Build dns2tcp for Windows
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -18,7 +19,7 @@ jobs:
 
       - name: Build dns2tcp
         run: |
-          git clone https://github.com/your/dns2tcp.git
+          git clone https://github.com/theshadowaura/dns2tcp.git
           cd dns2tcp
           make
 
